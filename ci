@@ -4,6 +4,8 @@ set -e
 . ./build
 
 while read -r IMAGE; do
+    echo $DOCKER_LOGIN_USERNAME
+    echo "this should be test, TEST=$TEST"
     sudo darch images push --user $DOCKER_LOGIN_USERNAME:$DOCKER_LOGIN_PASSWORD docker.io/dpendolino/darch-arch-$IMAGE:$TAG
     sudo darch images push --user $DOCKER_LOGIN_USERNAME:$DOCKER_LOGIN_PASSWORD docker.io/dpendolino/darch-arch-$IMAGE:latest
 done <<< "$IMAGES"
