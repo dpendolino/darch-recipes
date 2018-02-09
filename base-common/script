@@ -37,11 +37,11 @@ fi
 
 # Install fresh copy of dotfiles for dpendolino.
 # dotbot requires Python.
-# install_packages python
-# runuser -l dpendolino -c "git clone https://github.com/dpendolino/dotfiles.git ~/.dotfiles"
-# runuser -l dpendolino -c "cd ~/.dotfiles && ./install"
+install_packages python
+runuser -l dpendolino -c "git clone https://github.com/dpendolino/dotfiles.git ~/.dotfiles"
+runuser -l dpendolino -c "cd ~/.dotfiles && ./install"
 # Now that they are installed, removed dotbot to clean up the image.
-# runuser -l dpendolino -c "rm -r ~/.dotfiles/dotbot"
+runuser -l dpendolino -c "rm -r ~/.dotfiles/dotbot"
 
 # Setup sudo
 install_packages sudo
