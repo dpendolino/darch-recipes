@@ -4,7 +4,7 @@ set -e
 . ../common
 
 # Setup the locales.
-echo "en_US.UTF-8 UTF-8" > /etc/locale.gen  
+echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 locale-gen
 
 # Set the root password
@@ -21,7 +21,7 @@ install_packages zsh zsh-completions
 
 # Add our users
 groupadd guests
-useradd -m -G adm,ftp,games,http,log,rfkill,sys,systemd-journal,users,uucp,wheel -s /bin/zsh pknopf
+useradd -m -G adm,ftp,games,http,log,rfkill,sys,systemd-journal,users,uucp,wheel -s /bin/zsh dpendolino
 useradd -m -G guests,users -s /bin/zsh guest
 
 # TODO: restrict access to su/sudo commands for non-wheel users
@@ -29,23 +29,23 @@ useradd -m -G guests,users -s /bin/zsh guest
 # Set the root password
 if [ -n  "$USER_PASSWD" ]; then
     echo "Using user password provided by environment variable..."
-    echo -en "$USER_PASSWD\n$USER_PASSWD" | passwd pknopf
+    echo -en "$USER_PASSWD\n$USER_PASSWD" | passwd dpendolino
 else
     echo "Using default user password..."
-    echo -en "password\npassword" | passwd pknopf
+    echo -en "password\npassword" | passwd dpendolino
 fi
 
-# Install fresh copy of dotfiles for pknopf.
+# Install fresh copy of dotfiles for dpendolino.
 # dotbot requires Python.
-install_packages python
-runuser -l pknopf -c "git clone https://github.com/pauldotknopf/dotfiles.git ~/.dotfiles"
-runuser -l pknopf -c "cd ~/.dotfiles && ./install"
+# install_packages python
+# runuser -l dpendolino -c "git clone https://github.com/dpendolino/dotfiles.git ~/.dotfiles"
+# runuser -l dpendolino -c "cd ~/.dotfiles && ./install"
 # Now that they are installed, removed dotbot to clean up the image.
-runuser -l pknopf -c "rm -r ~/.dotfiles/dotbot"
+# runuser -l dpendolino -c "rm -r ~/.dotfiles/dotbot"
 
 # Setup sudo
 install_packages sudo
-echo "pknopf ALL=(ALL) ALL" >> /etc/sudoers
+echo "dpendolino ALL=(ALL) ALL" >> /etc/sudoers
 
 # Enable ssh
 install_packages openssh
