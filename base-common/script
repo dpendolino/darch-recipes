@@ -16,13 +16,13 @@ else
     echo -en "password\npassword" | passwd
 fi
 
-# Use zsh, not bash
-install_packages zsh zsh-completions
+# Use Bash
+install_packages bash bash-completion
 
 # Add our users
 groupadd guests
-useradd -m -G adm,ftp,games,http,log,rfkill,sys,systemd-journal,users,uucp,wheel -s /bin/zsh dpendolino
-useradd -m -G guests,users -s /bin/zsh guest
+useradd -m -G adm,ftp,games,http,log,rfkill,sys,systemd-journal,users,uucp,wheel -s /bin/bash dpendolino
+# useradd -m -G guests,users -s /bin/zsh guest
 
 # TODO: restrict access to su/sudo commands for non-wheel users
 
@@ -64,13 +64,14 @@ install_packages ntp
 systemctl enable ntpd
 
 # Using antigen for zsh
-install_aur_package antigen-git
+# install_aur_package antigen-git
 
 # Quality of life packages
 install_packages \
 fasd \
 powerline \
 python-pip \
+cifs-utils \
 vim
 
 # Install custom PS1
