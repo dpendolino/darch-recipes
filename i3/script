@@ -7,8 +7,13 @@ set -e
 install_packages pulseaudio
 install_aur_package pulseaudio-ctl
 
-# I am using Intel graphics on all my machines.
-install_packages xf86-video-intel
+# I either use Intel graphics or Nvidia
+install_packages \
+xf86-video-intel \
+nvidia \
+nvidia-settings \
+nvidia-utils \
+opencl-nvidia \
 
 # Use X11. Wayland is newer, but options for VNC aren't good.
 install_packages xorg-server xorg-xrandr
@@ -31,13 +36,15 @@ curl --output /usr/share/wallpapers/frosted.jpg https://www.pknopf.com/wallpaper
 # Install feh, which we will use to set the wallpaper.
 install_aur_package feh
 
-# Install
+# Install packages
 install_packages \
   firefox \
   lightdm \
   lightdm-gtk-greeter \
   lxterminal \
-  xterm
+  xterm \
+install_aur_package \
+  dmenu-frecency-git \
 
 # Enable services
 systemctl enable lightdm.service
