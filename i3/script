@@ -38,13 +38,15 @@ install_aur_package feh
 
 # Install packages
 install_packages \
+  dmenu \
   firefox \
   lightdm \
   lightdm-gtk-greeter \
   lxterminal \
-  xterm \
+  xterm
+
 install_aur_package \
-  dmenu-frecency-git \
+  dmenu-frecency-git
 
 # Enable services
 systemctl enable lightdm.service
