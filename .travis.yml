@@ -2,9 +2,10 @@ sudo: required
 addons:
   apt:
     packages:
-      - libseccomp-dev
+    - libseccomp-dev
 before_install:
-- curl -s https://raw.githubusercontent.com/godarch/darch/develop/scripts/install | sudo DARCH_WITH_RUNTIME="yes" bash /dev/stdin
+- curl -s https://raw.githubusercontent.com/godarch/darch/develop/scripts/install
+  | sudo DARCH_WITH_RUNTIME="yes" bash /dev/stdin
 - sudo containerd &
 - darch version
 - sudo ctr version
@@ -12,3 +13,6 @@ before_install:
 - sudo darch images pull docker.io/godarch/arch:latest
 script:
 - "./ci"
+notifications:
+  slack:
+    secure: yiIV+GpEiLwCbOgoaR9YNNfSQTgn72k9pQLXU4vkZ9cDQpA2+S14rvg8acW1w+/JGRzOyhMFa/29yuGx94qOfoQVctRJfWhj5RTHh1flUetaHoYlzlh2fEOoZrqcCb/WnIbAxGLqCNiyVGyIUDrK4zXUUahfkt7FaOWUizHVlWpwiw58XcIiHyDIa7qQjLkCssLe8uEKS9JnbCk5QDMmRoKj7H4aD/IQyOz0kTvMdhBCTuR5u8iX5gDLHz+mD17XV+4UxOoDg4wrW4vbOZUrnE4ATFgzGVkOsPsBl3qswLGEbfSpDaIE8H9ghuCZd/98x2yyqLy7FnMio2tm/Obq4dvCSJTYL3/eK4fcTFgqNVWI5luavGzGis9Z1jzt+uIkNhhBzHF4pb6tRxX17vAO0OuwZ707q2r0zxIWlFg3xVOj9ycSU8LtPrnZ4wXjtODR1yPhm4ZoBsfx2+RjHjOVD0LWzBEUFAYMCWKvw3zwai5rpfSTPJR0p5OlWHBWfew06ZMXrXxPxfThg6Azf3lyr+MSRwwdSUVyM0OfUtX+1NelERSX8YZV2+hQlHzjeQ8956DY16PzCb0X0pDxmZS2NsPlUGCDpmHVTuXnj7IAUAef7aT1C7gyQtyKLJrHCPG85rsdBD0gCeAVox1hmTScqT1QoJ+h9eAPJNhCP8+Qbjw=
