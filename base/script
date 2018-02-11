@@ -7,7 +7,7 @@ set -e
 pacman-key --init
 pacman-key --populate archlinux
 
-# Resyn the database
+# Resync the database
 pacman -Sy --noconfirm
 # Update gpg keys before we install anything else.
 pacman -S --noconfirm archlinux-keyring
@@ -24,13 +24,13 @@ wget -q -O- https://www.archlinux.org/mirrorlist/\?country\=US\&protocol\=http\&
 # Run base install, with dev tools. The "bootstrap" fs doesn't contain everything, just what you need to bootstrap.
 install_packages base base-devel
 
-# makepkg don't allow you to run as root, because it could damage your system.
+# makepkg won't allow you to run as root, because it could damage your system.
 # This is correct, but we don't modify existing systems, we build new ones.
 # The root stuff is more of a hindrance than a benefit when using darch.
 install_packages patch
 curl https://gist.githubusercontent.com/pauldotknopf/ff8e986225ab2f264acea1a5bb0c6c5a/raw/66e39c98b1a87cb40abfd489dba53bb5a8625186/makepkg.patch | patch /usr/bin/makepkg
 
-# Now that we can run makepkg with root, let's our aur helper
+# Now that we can run makepkg with root, let's install our aur helper
 install_aur_helper
 
 # Install Darch

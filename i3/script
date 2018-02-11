@@ -14,16 +14,15 @@ install_packages xf86-video-intel
 install_packages xorg-server xorg-xrandr
 
 # Install i3
-install_packages i3 compton xorg-xinit
+install_packages i3-gaps compton xorg-xinit
 install_aur_package j4-dmenu-desktop
 install_aur_package polybar
 
-# Use alacritty as out terminal with tmux
-install_aur_package alacritty-git
 install_packages tmux
+install_packages mate-terminal
 
 # Use autorandr to save/load monitor setups
-install_aur_package autorandr-git
+# install_aur_package autorandr-git
 
 # Download the wallpapers.
 mkdir -p /usr/share/wallpapers/
@@ -31,3 +30,18 @@ curl --output /usr/share/wallpapers/frosted.jpg https://www.pknopf.com/wallpaper
 
 # Install feh, which we will use to set the wallpaper.
 install_aur_package feh
+
+install_packages yes
+
+# Install X11, i3wm, etc
+yes | install_packages \
+  firefox
+  lightdm \
+  lightdm-gtk-greeter \
+  lxterminal \
+  powerline \
+  sudo \
+  xterm
+
+# Enable services
+systemctl enable lightdm.service

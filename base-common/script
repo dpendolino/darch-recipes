@@ -65,3 +65,8 @@ systemctl enable ntpd
 
 # Using antigen for zsh
 install_aur_package antigen-git
+
+# Quality of life packages
+install_packages \
+fasd \
+vim
