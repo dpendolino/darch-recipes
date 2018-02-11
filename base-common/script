@@ -69,4 +69,9 @@ install_aur_package antigen-git
 # Quality of life packages
 install_packages \
 fasd \
+powerline \
+python-pip \
 vim
+
+# Install custom PS1
+pip install powerline-shell

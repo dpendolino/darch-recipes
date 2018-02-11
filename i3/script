@@ -31,16 +31,12 @@ curl --output /usr/share/wallpapers/frosted.jpg https://www.pknopf.com/wallpaper
 # Install feh, which we will use to set the wallpaper.
 install_aur_package feh
 
-install_packages yes
-
-# Install X11, i3wm, etc
-yes | install_packages \
-  firefox
+# Install
+install_packages \
+  firefox \
   lightdm \
   lightdm-gtk-greeter \
   lxterminal \
-  powerline \
-  sudo \
   xterm
 
 # Enable services
