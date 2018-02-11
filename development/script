@@ -3,6 +3,12 @@ set -e
 
 . ../common
 
-install_aur_package google-chrome
-install_packages autopep8
-install_packages atom
+install_aur_package \
+google-chrome \
+google-cloud-sdk \
+ttf-hack-powerline-git \
+
+install_packages \
+atom \
+autopep8 \
+zim \
