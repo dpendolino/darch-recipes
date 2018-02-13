@@ -52,8 +52,13 @@ install_packages openssh
 systemctl enable sshd
 
 # Fonts
-install_aur_package ttf-ms-fonts
-install_aur_package nerd-fonts-complete
+install_aur_package \
+  ttf-ms-fonts \
+  nerd-fonts-complete \
+  ttf-hack-powerline-git \
+  ttf-google-fonts-git
+
+install_packages ttf-symbola
 
 # Timezone
 rm /etc/localtime
@@ -72,6 +77,8 @@ fasd \
 powerline \
 python-pip \
 cifs-utils \
+archey3 \
+
 vim
 
 # Install custom PS1

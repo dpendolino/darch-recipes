@@ -49,3 +49,12 @@ echo "root = \"/var/lib/darch/containerd\"" > /etc/containerd/config.toml
 cp wired.network /etc/systemd/network/
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
+
+# Necessary Packages
+install_packages \
+  tcpdump \
+  nmap \
+  rsync \
+  htop \
+  iotop \
+  atop \

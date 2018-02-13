@@ -15,6 +15,9 @@ nvidia-settings \
 nvidia-utils \
 opencl-nvidia \
 
+# Touchpad Support
+install_packages xf86-input-synaptics
+
 # Use X11. Wayland is newer, but options for VNC aren't good.
 install_packages xorg-server xorg-xrandr
 
@@ -23,8 +26,10 @@ install_packages i3-gaps compton xorg-xinit
 install_aur_package j4-dmenu-desktop
 install_aur_package polybar
 
+# Install Terminal Emulators/Multiplexors
 install_packages tmux
 install_packages mate-terminal
+install_aur_package kitty
 
 # Use autorandr to save/load monitor setups
 # install_aur_package autorandr-git
@@ -32,6 +37,7 @@ install_packages mate-terminal
 # Download the wallpapers.
 mkdir -p /usr/share/wallpapers/
 curl --output /usr/share/wallpapers/frosted.jpg https://www.pknopf.com/wallpapers/frostedlights.jpg
+ln -s  /usr/share/wallpapers/frosted.jpg /usr/share/wallpapers/wallpaper.png
 
 # Install feh, which we will use to set the wallpaper.
 install_aur_package feh
@@ -43,10 +49,15 @@ install_packages \
   lightdm \
   lightdm-gtk-greeter \
   lxterminal \
-  xterm
+  xterm \
+  dex \
+  blueberry \
+
 
 install_aur_package \
-  dmenu-frecency-git
+  dmenu-frecency-git \
+  twmn-git \
+  modprobed-db \
 
 # Enable services
 systemctl enable lightdm.service

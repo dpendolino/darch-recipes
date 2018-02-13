@@ -6,9 +6,13 @@ set -e
 install_aur_package \
 google-chrome \
 google-cloud-sdk \
-ttf-hack-powerline-git \
+beautysh \
+
 
 install_packages \
 atom \
 autopep8 \
 zim \
+vagrant \
+packer-io \
+shellcheck \
