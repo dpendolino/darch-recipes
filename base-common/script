@@ -58,7 +58,15 @@ install_aur_package \
   ttf-hack-powerline-git \
   ttf-google-fonts-git
 
-install_packages ttf-symbola
+install_packages \
+  ttf-symbola \
+  noto-fonts \
+  noto-fonts-emoji \
+  noto-fonts-extra \
+
+# Locale
+echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+echo "LC_COLLATE=en_US.UTF-8" >> /etc/locale.conf
 
 # Timezone
 rm /etc/localtime
@@ -67,9 +75,6 @@ ln -s ../usr/share/zoneinfo/US/Eastern /etc/localtime
 # Time sync
 install_packages ntp
 systemctl enable ntpd
-
-# Using antigen for zsh
-# install_aur_package antigen-git
 
 # Quality of life packages
 install_packages \

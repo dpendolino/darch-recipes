@@ -52,12 +52,14 @@ install_packages \
   xterm \
   dex \
   blueberry \
+  zenity \
 
 
 install_aur_package \
   dmenu-frecency-git \
   twmn-git \
   modprobed-db \
+  ntfy \
 
 # Enable services
 systemctl enable lightdm.service
