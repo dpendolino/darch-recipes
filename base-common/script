@@ -78,7 +78,6 @@ powerline \
 python-pip \
 cifs-utils \
 archey3 \
-
 vim
 
 # Install custom PS1
