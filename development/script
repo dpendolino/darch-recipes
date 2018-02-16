@@ -16,3 +16,5 @@ zim \
 vagrant \
 packer-io \
 shellcheck \
+php \
+ccache \
