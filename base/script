@@ -62,7 +62,7 @@ install_packages \
 
 
 # Add encrypt hook to mkinitcpio.conf
-sed -i 's/HOOKS="base udev autodetect modconf block keyboard keymap filesystems resume"/HOOKS="base udev autodetect modconf block encrypt lvm2 keyboard keymap filesystems resume fsck"/' mkinitcpio.conf
+sed -i 's/HOOKS="base udev autodetect modconf block keyboard keymap filesystems resume"/HOOKS="base udev autodetect modconf block encrypt lvm2 keyboard keymap filesystems resume fsck"/' /etc/mkinitcpio.conf
 
 # Rebuild initramfs
 mkinitcpio -p linux
