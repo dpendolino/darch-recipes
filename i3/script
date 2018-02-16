@@ -44,14 +44,17 @@ install_aur_package feh
 
 # Install packages
 install_packages \
+  blueberry \
+  dbus \
+  dex \
   dmenu \
   firefox \
   lightdm \
   lightdm-gtk-greeter \
   lxterminal \
+  python-dbus \
+  thunar \
   xterm \
-  dex \
-  blueberry \
   zenity \
 
 
@@ -60,6 +63,7 @@ install_aur_package \
   twmn-git \
   modprobed-db \
   ntfy \
+  vmware-workstation12 \
 
 # Enable services
 systemctl enable lightdm.service
