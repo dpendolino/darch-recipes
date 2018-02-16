@@ -60,9 +60,28 @@ install_packages \
   atop \
   linux-headers \
 
-
 # Add encrypt hook to mkinitcpio.conf
 sed -i 's/HOOKS="base udev autodetect modconf block keyboard keymap filesystems resume"/HOOKS="base udev autodetect modconf block encrypt lvm2 keyboard keymap filesystems resume fsck"/' /etc/mkinitcpio.conf
 
+# Install ZFS
+cat >> /etc/pacman.conf << EndOfMessage
+[archzfs]
+Server = http://archzfs.com/\$repo/x86_64
+EndOfMessage
+
+# add archzfs keys
+pacman-key --keyserver pool.sks-keyservers.net --recv-keys 5E1ABF240EE7A126
+pacman-key --keyserver pool.sks-keyservers.net --lsign-key 5E1ABF240EE7A126
+
+# Downgrade kernel to 14.15.1-2
+cd /tmp
+wget https://archive.archlinux.org/packages/l/linux/linux-4.15.2-2-x86_64.pkg.tar.xz
+wget https://archive.archlinux.org/packages/l/linux-headers/linux-headers-4.15.2-2-x86_64.pkg.tar.xz
+pacman -U --noconfirm linux-4.15.2-2-x86_64.pkg.tar.xz linux-headers-4.15.2-2-x86_64.pkg.tar.xz
+
+# update and install
+pacman -Syy
+install_packages spl-linux zfs-linux zfs-utils-common spl-utils-common
+
 # Rebuild initramfs
-mkinitcpio -p linux
+# mkinitcpio -p linux
