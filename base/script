@@ -60,7 +60,7 @@ install_packages \
   atop \
   linux-headers \
 
-# Add encrypt hook to mkinitcpio.conf
+  # Add encrypt hook to mkinitcpio.conf
 sed -i 's/HOOKS="base udev autodetect modconf block keyboard keymap filesystems resume"/HOOKS="base udev autodetect modconf block encrypt lvm2 keyboard keymap filesystems resume fsck"/' /etc/mkinitcpio.conf
 
 # Install ZFS
@@ -70,7 +70,11 @@ Server = http://archzfs.com/\$repo/x86_64
 EndOfMessage
 
 # add archzfs keys
-pacman-key --keyserver pool.sks-keyservers.net --recv-keys 5E1ABF240EE7A126
+GPG_KEY='5E1ABF240EE7A126'
+( pacman-key --keyserver ha.pool.sks-keyservers.net  --recv-keys "$GPG_KEY" || \
+    pacman-key --keyserver pgp.mit.edu --recv-keys "$GPG_KEY" || \
+  pacman-key --keyserver keyserver.pgp.com --recv-keys "$GPG_KEY" )
+
 pacman-key --keyserver pool.sks-keyservers.net --lsign-key 5E1ABF240EE7A126
 
 # Downgrade kernel to 14.15.1-2

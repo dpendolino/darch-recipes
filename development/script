@@ -4,17 +4,17 @@ set -e
 . ../common
 
 install_aur_package \
-google-chrome \
-google-cloud-sdk \
-beautysh \
+  google-chrome \
+  google-cloud-sdk \
+  beautysh \
 
 
-install_packages \
-atom \
-autopep8 \
-zim \
-vagrant \
-packer-io \
-shellcheck \
-php \
-ccache \
+  install_packages \
+  atom \
+  autopep8 \
+  zim \
+  vagrant \
+  packer-io \
+  shellcheck \
+  php \
+  ccache \
