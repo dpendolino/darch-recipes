@@ -62,7 +62,7 @@ install_aur_package \
   dmenu-frecency-git \
   twmn-git \
   modprobed-db \
-  ntfy \
+  ntfy-git \
   vmware-workstation12 \
 
 # Enable services

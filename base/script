@@ -83,5 +83,9 @@ pacman -U --noconfirm linux-4.15.2-2-x86_64.pkg.tar.xz linux-headers-4.15.2-2-x8
 pacman -Syy
 install_packages spl-linux zfs-linux zfs-utils-common spl-utils-common
 
+# enable zfs service
+mkdir /mnt/HeartOfGold
+systemctl enable zfs-import-cache.service zfs-import-scan.service zfs-mount.service
+
 # Rebuild initramfs
 # mkinitcpio -p linux

@@ -82,7 +82,12 @@ powerline \
 python-pip \
 cifs-utils \
 archey3 \
-vim
+vim \
+ruby \
+ruby-rdoc \
+
+# update gems
+gem update --system
 
 # Install custom PS1
 pip install powerline-shell
