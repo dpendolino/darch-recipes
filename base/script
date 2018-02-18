@@ -59,6 +59,11 @@ install_packages \
   iotop \
   atop \
   linux-headers \
+  net-tools \
+  bind-tools \
+  fzf \
+
+install_aur_package hstr-git
 
   # Add encrypt hook to mkinitcpio.conf
 sed -i 's/HOOKS="base udev autodetect modconf block keyboard keymap filesystems resume"/HOOKS="base udev autodetect modconf block encrypt lvm2 keyboard keymap filesystems resume fsck"/' /etc/mkinitcpio.conf
@@ -86,10 +91,16 @@ pacman -U --noconfirm linux-4.15.2-2-x86_64.pkg.tar.xz linux-headers-4.15.2-2-x8
 # update and install
 pacman -Syy
 install_packages spl-linux zfs-linux zfs-utils-common spl-utils-common
+install_aur_package zfs-auto-snapshot-git
 
 # enable zfs service
 mkdir /mnt/HeartOfGold
-systemctl enable zfs-import-cache.service zfs-import-scan.service zfs-mount.service
+systemctl enable zfs-import-cache.service \
+  zfs-import-scan.service \
+  zfs-mount.service  \
+  zfs-auto-snapshot-daily.timer \
+  zfs-auto-snapshot-monthly.timer \
+  zfs-auto-snapshot-weekly.timer
 
 # Rebuild initramfs
 # mkinitcpio -p linux

@@ -8,7 +8,6 @@ install_aur_package \
   google-cloud-sdk \
   beautysh \
 
-
   install_packages \
   atom \
   autopep8 \
@@ -17,4 +16,5 @@ install_aur_package \
   packer-io \
   shellcheck \
   php \
+  composer  \
   ccache \

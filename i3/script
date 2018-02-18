@@ -57,6 +57,8 @@ install_packages \
   xterm \
   zenity \
 
+# needed prior to install workstation12
+install_aur_package ncurses5-compat-libs
 
 install_aur_package \
   dmenu-frecency-git \
