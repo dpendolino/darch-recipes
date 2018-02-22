@@ -58,13 +58,14 @@ install_packages \
   zenity \
 
 # needed prior to install workstation12
-# gpg --recv-keys C52048C0C0748FEE227D47A2702353E0F7E48EDB
+gpg --recv-keys C52048C0C0748FEE227D47A2702353E0F7E48EDB
+gpg --recv-keys 702353E0F7E48EDB
 # GPG_KEY='702353E0F7E48EDB'
 # ( pacman-key --keyserver ha.pool.sks-keyservers.net  --recv-keys "$GPG_KEY" || \
 #     pacman-key --keyserver pgp.mit.edu --recv-keys "$GPG_KEY" || \
 #   pacman-key --keyserver keyserver.pgp.com --recv-keys "$GPG_KEY" ) && \
 # pacman-key --keyserver pool.sks-keyservers.net --lsign-key "$GPG_KEY" && \
-# install_aur_package ncurses5-compat-libs vmware-workstation12
+install_aur_package ncurses5-compat-libs vmware-workstation12
 
 install_aur_package dmenu-frecency-git
 install_aur_package twmn-git
