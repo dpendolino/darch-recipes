@@ -9,13 +9,13 @@ install_aur_package pulseaudio-ctl
 
 # I either use Intel graphics or Nvidia
 install_packages \
-xf86-video-intel \
-nvidia \
-nvidia-settings \
-nvidia-utils \
-opencl-nvidia \
+  xf86-video-intel \
+  nvidia \
+  nvidia-settings \
+  nvidia-utils \
+  opencl-nvidia \
 
-# Touchpad Support
+  # Touchpad Support
 install_packages xf86-input-synaptics
 
 # Use X11. Wayland is newer, but options for VNC aren't good.
@@ -58,13 +58,17 @@ install_packages \
   zenity \
 
 # needed prior to install workstation12
-gpg --recv-keys C52048C0C0748FEE227D47A2702353E0F7E48EDB
-gpg --recv-keys 702353E0F7E48EDB
+# gpg --recv-keys C52048C0C0748FEE227D47A2702353E0F7E48EDB
+# gpg --recv-keys 702353E0F7E48EDB
 # GPG_KEY='702353E0F7E48EDB'
 # ( pacman-key --keyserver ha.pool.sks-keyservers.net  --recv-keys "$GPG_KEY" || \
-#     pacman-key --keyserver pgp.mit.edu --recv-keys "$GPG_KEY" || \
-#   pacman-key --keyserver keyserver.pgp.com --recv-keys "$GPG_KEY" ) && \
+# pacman-key --keyserver pgp.mit.edu --recv-keys "$GPG_KEY" || \
+# pacman-key --keyserver keyserver.pgp.com --recv-keys "$GPG_KEY" ) && \
 # pacman-key --keyserver pool.sks-keyservers.net --lsign-key "$GPG_KEY" && \
+GPG_KEY='702353E0F7E48EDB'
+( gpg --keyserver ha.pool.sks-keyservers.net  --recv-keys "$GPG_KEY" || \
+  gpg --keyserver pgp.mit.edu --recv-keys "$GPG_KEY" || \
+  gpg --keyserver keyserver.pgp.com --recv-keys "$GPG_KEY" )
 install_aur_package ncurses5-compat-libs vmware-workstation12
 
 install_aur_package dmenu-frecency-git
