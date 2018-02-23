@@ -3,8 +3,10 @@ set -e
 
 . ../common
 
+# just in case google-chrome fails
+install_aur_packages google-chrome || install_packages chromium
+
 install_aur_packages \
-  google-chrome \
   google-cloud-sdk \
   beautysh \
 
