@@ -84,9 +84,9 @@ pacman-key --keyserver pool.sks-keyservers.net --lsign-key 5E1ABF240EE7A126
 
 # Downgrade kernel to 14.15.1-2
 cd /tmp
-wget https://archive.archlinux.org/packages/l/linux/linux-4.15.2-2-x86_64.pkg.tar.xz
-wget https://archive.archlinux.org/packages/l/linux-headers/linux-headers-4.15.2-2-x86_64.pkg.tar.xz
-pacman -U --noconfirm linux-4.15.2-2-x86_64.pkg.tar.xz linux-headers-4.15.2-2-x86_64.pkg.tar.xz
+wget https://archive.archlinux.org/packages/l/linux/linux-4.15.3-2-x86_64.pkg.tar.xz
+wget https://archive.archlinux.org/packages/l/linux-headers/linux-headers-4.15.3-2-x86_64.pkg.tar.xz
+pacman -U --noconfirm linux-4.15.2-2-x86_64.pkg.tar.xz linux-headers-4.15.3-2-x86_64.pkg.tar.xz
 
 # update and install
 pacman -Syy
