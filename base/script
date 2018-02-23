@@ -31,7 +31,9 @@ install_packages patch
 curl https://gist.githubusercontent.com/pauldotknopf/ff8e986225ab2f264acea1a5bb0c6c5a/raw/66e39c98b1a87cb40abfd489dba53bb5a8625186/makepkg.patch | patch /usr/bin/makepkg
 
 # Edit makepkg.conf
+nproc
 sed -i "s/#MAKEFLAGS=\"-j2/MAKEFLAGS=\"-j$(nproc)\"/"  /etc/makepkg.conf
+cat /etc/makepkg.conf
 
 # Now that we can run makepkg with root, let's install our aur helper
 install_aur_helper
