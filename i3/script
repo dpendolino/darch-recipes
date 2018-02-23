@@ -5,7 +5,7 @@ set -e
 
 # Enable audio
 install_packages pulseaudio
-install_aur_package pulseaudio-ctl
+install_aur_packages pulseaudio-ctl
 
 # I either use Intel graphics or Nvidia
 install_packages \
@@ -23,16 +23,16 @@ install_packages xorg-server xorg-xrandr
 
 # Install i3
 install_packages i3-gaps compton xorg-xinit
-install_aur_package j4-dmenu-desktop
-install_aur_package polybar
+install_aur_packages j4-dmenu-desktop
+install_aur_packages polybar
 
 # Install Terminal Emulators/Multiplexors
 install_packages tmux
 install_packages mate-terminal
-install_aur_package kitty
+install_aur_packages kitty
 
 # Use autorandr to save/load monitor setups
-# install_aur_package autorandr-git
+# install_aur_packages autorandr-git
 
 # Download the wallpapers.
 mkdir -p /usr/share/wallpapers/
@@ -40,7 +40,7 @@ curl --output /usr/share/wallpapers/frosted.jpg https://www.pknopf.com/wallpaper
 ln -s  /usr/share/wallpapers/frosted.jpg /usr/share/wallpapers/wallpaper.png
 
 # Install feh, which we will use to set the wallpaper.
-install_aur_package feh
+install_aur_packages feh
 
 # Install packages
 install_packages \
@@ -69,12 +69,13 @@ GPG_KEY='702353E0F7E48EDB'
 ( gpg --keyserver ha.pool.sks-keyservers.net  --recv-keys "$GPG_KEY" || \
   gpg --keyserver pgp.mit.edu --recv-keys "$GPG_KEY" || \
   gpg --keyserver keyserver.pgp.com --recv-keys "$GPG_KEY" )
-install_aur_package ncurses5-compat-libs vmware-workstation12
+install_aur_packages ncurses5-compat-libs
+install_aur_packages vmware-workstation12
 
-install_aur_package dmenu-frecency-git
-install_aur_package twmn-git
-install_aur_package modprobed-db
-install_aur_package ntfy-git
+install_aur_packages dmenu-frecency-git
+install_aur_packages twmn-git
+install_aur_packages modprobed-db
+install_aur_packages ntfy-git
 
 # Enable services
 systemctl enable lightdm.service

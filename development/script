@@ -3,7 +3,7 @@ set -e
 
 . ../common
 
-install_aur_package \
+install_aur_packages \
   google-chrome \
   google-cloud-sdk \
   beautysh \

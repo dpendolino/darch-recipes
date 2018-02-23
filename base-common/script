@@ -52,7 +52,7 @@ install_packages openssh
 systemctl enable sshd
 
 # Fonts
-install_aur_package \
+install_aur_packages \
   nerd-fonts-complete \
   ttf-hack-powerline-git \
   ttf-google-fonts-git
