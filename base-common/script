@@ -52,12 +52,10 @@ install_packages openssh
 systemctl enable sshd
 
 # Fonts
-install_aur_packages \
+install_packages \
   nerd-fonts-complete \
   ttf-hack-powerline-git \
   ttf-google-fonts-git
-
-install_packages \
   ttf-symbola \
   noto-fonts \
   noto-fonts-emoji \

@@ -3,6 +3,9 @@ set -e
 
 . ../common
 
+# I compile the AUR images myself, to speed up the build.
+echo -e "[dpendolino]\nServer = https://github.com/dpendolino/binary-repos/releases/download/arch-linux-release/\nSigLevel = Optional TrustAll" >> /etc/pacman.conf
+
 # Initialize the keys
 pacman-key --init
 pacman-key --populate archlinux
@@ -96,7 +99,7 @@ pacman -U --noconfirm "$kernel" "$headers"
 # update and install
 pacman -Syy
 install_packages spl-linux zfs-linux zfs-utils-common spl-utils-common
-install_aur_packages zfs-auto-snapshot-git
+install_packages zfs-auto-snapshot-git
 
 # enable zfs service
 mkdir /mnt/HeartOfGold
