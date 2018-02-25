@@ -69,7 +69,7 @@ install_packages \
   bind-tools \
   fzf \
 
-install_packages hstr-git
+# install_packages hstr-git
 
   # Add encrypt hook to mkinitcpio.conf
 sed -i 's/HOOKS="base udev autodetect modconf block keyboard keymap filesystems resume"/HOOKS="base udev autodetect modconf block encrypt lvm2 keyboard keymap filesystems resume fsck"/' /etc/mkinitcpio.conf
