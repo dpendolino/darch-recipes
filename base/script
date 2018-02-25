@@ -99,7 +99,7 @@ pacman -U --noconfirm "$kernel" "$headers"
 # update and install
 pacman -Syy
 install_packages spl-linux zfs-linux zfs-utils-common spl-utils-common
-install_packages zfs-auto-snapshot-git
+install_aur_packages zfs-auto-snapshot-git
 
 # enable zfs service
 mkdir /mnt/HeartOfGold

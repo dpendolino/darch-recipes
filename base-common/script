@@ -51,15 +51,17 @@ echo "dpendolino ALL=(ALL) ALL" >> /etc/sudoers
 install_packages openssh
 systemctl enable sshd
 
+
 # Fonts
 install_packages \
   nerd-fonts-complete \
   ttf-hack-powerline-git \
-  ttf-google-fonts-git
   ttf-symbola \
   noto-fonts \
   noto-fonts-emoji \
   noto-fonts-extra \
+
+install_aur_packages ttf-google-fonts-git
 
 # Locale
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
