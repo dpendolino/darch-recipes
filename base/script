@@ -5,6 +5,8 @@ set -e
 
 # I compile the AUR images myself, to speed up the build.
 echo -e "[dpendolino]\nServer = https://github.com/dpendolino/binary-repos/releases/download/arch-linux-release/\nSigLevel = Optional TrustAll" >> /etc/pacman.conf
+# use wget a transfer command to avoid issue with large files
+sed -i 's/#XferCommand = \/usr\/bin\/wget --passive-ftp -c -O %o %u/XferCommand = \/usr\/bin\/wget --passive-ftp -c -O %o %u/' /etc/pacman.conf
 
 # Initialize the keys
 pacman-key --init
