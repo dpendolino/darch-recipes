@@ -19,13 +19,12 @@ pacman -Syu --noconfirm
 
 # Let's update the mirrors.
 # Note that we append the list, because my experience with the repo square-r00t (in godarch/arch) has been really good.
-install_packages wget sed
+install_packages wget sed aria2
 wget -q -O- https://www.archlinux.org/mirrorlist/\?country\=US\&protocol\=http\&protocol\=https\&ip_version\=4\&use_mirror_status\=on \
   | sed -e "s/#Server/Server/g" \
   >> /etc/pacman.d/mirrorlist
 
 # Use aria2 transfer command to avoid issue with large files and speed up downloads
-pacman -S --noconfirm aria2
 sed -i '/#XferCommand = \/usr\/bin\/wget --passive-ftp -c -O %o %u/a XferCommand = echo Downloading %u ... && /usr/bin/aria2c --conf-path=/root/.aria2/pacman-aria2.conf --dir=/ --out %o %u' /etc/pacman.conf
 mkdir /root/.aria2
 cat >> /root/.aria2/pacman-aria2.conf << EndOfMessage
