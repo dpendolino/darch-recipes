@@ -3,6 +3,9 @@ set -e
 
 . ../common
 
+# Back up pacman.conf first
+cp /etc/pacman.conf /etc/pacman.conf.org
+
 # I compile the AUR images myself, to speed up the build.
 echo -e "[dpendolino]\nServer = https://github.com/dpendolino/binary-repos/releases/download/arch-linux-release/\nSigLevel = Optional TrustAll" >> /etc/pacman.conf
 
