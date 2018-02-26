@@ -5,8 +5,6 @@ set -e
 
 # I compile the AUR images myself, to speed up the build.
 echo -e "[dpendolino]\nServer = https://github.com/dpendolino/binary-repos/releases/download/arch-linux-release/\nSigLevel = Optional TrustAll" >> /etc/pacman.conf
-# use wget a transfer command to avoid issue with large files
-sed -i 's/#XferCommand = \/usr\/bin\/wget --passive-ftp -c -O %o %u/XferCommand = \/usr\/bin\/wget --passive-ftp -c -O %o %u/' /etc/pacman.conf
 
 # Initialize the keys
 pacman-key --init
@@ -25,6 +23,9 @@ install_packages wget sed
 wget -q -O- https://www.archlinux.org/mirrorlist/\?country\=US\&protocol\=http\&protocol\=https\&ip_version\=4\&use_mirror_status\=on \
   | sed -e "s/#Server/Server/g" \
   >> /etc/pacman.d/mirrorlist
+
+# Use wget a transfer command to avoid issue with large files
+sed -i 's/#XferCommand = \/usr\/bin\/wget --passive-ftp -c -O %o %u/XferCommand = \/usr\/bin\/wget --passive-ftp -c -O %o %u/' /etc/pacman.conf
 
 # Run base install, with dev tools. The "bootstrap" fs doesn't contain everything, just what you need to bootstrap.
 install_packages base base-devel
