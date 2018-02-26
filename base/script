@@ -24,7 +24,7 @@ wget -q -O- https://www.archlinux.org/mirrorlist/\?country\=US\&protocol\=http\&
   | sed -e "s/#Server/Server/g" \
   >> /etc/pacman.d/mirrorlist
 
-# Use wget a transfer command to avoid issue with large files
+# Use aria2 transfer command to avoid issue with large files and speed up downloads
 pacman -S --noconfirm aria2
 sed -i '/#XferCommand = \/usr\/bin\/wget --passive-ftp -c -O %o %u/a XferCommand = echo Downloading %u ... && /usr/bin/aria2c --conf-path=/root/.aria2/pacman-aria2.conf --dir=/ --out %o %u' /etc/pacman.conf
 mkdir /root/.aria2
@@ -57,7 +57,7 @@ always-resume=false
 #ftp-proxy=127.0.0.1:8080
 
 # console
-quiet=false
+quiet=true
 console-log-level=warn
 summary-interval=0
 enable-color=false
@@ -69,7 +69,6 @@ human-readable=false
 log-level=warn
 log=/var/log/pacman-aria2.log
 EndOfMessage
-# sed -i 's/#XferCommand = \/usr\/bin\/wget --passive-ftp -c -O %o %u/XferCommand = \/usr\/bin\/wget --passive-ftp -c -O %o %u/' /etc/pacman.conf
 
 # Run base install, with dev tools. The "bootstrap" fs doesn't contain everything, just what you need to bootstrap.
 install_packages base base-devel
