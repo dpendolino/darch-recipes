@@ -46,8 +46,8 @@ arch-chroot /mnt /usr/bin/env bash -c "pwck || true"
 
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
-echo "en_US.UTF-8 UTF-8" > /mnt/etc/locale.gen  
-echo "en_US ISO-8859-1" >> /mnt/etc/locale.gen 
+echo "en_US.UTF-8 UTF-8" > /mnt/etc/locale.gen
+echo "en_US ISO-8859-1" >> /mnt/etc/locale.gen
 arch-chroot /mnt locale-gen
 
 rm /mnt/etc/localtime
@@ -60,11 +60,11 @@ arch-chroot /mnt systemctl enable systemd-resolved
 echo "Enter root password..."
 arch-chroot /mnt passwd
 
-arch-chroot /mnt useradd -m -g users -G adm,ftp,games,http,log,rfkill,sys,systemd-journal,users,uucp,wheel -s /bin/zsh pknopf
-echo "pknopf ALL=(ALL) ALL" > /mnt/etc/sudoers.d/pknopf
+arch-chroot /mnt useradd -m -g users -G adm,ftp,games,http,log,rfkill,sys,systemd-journal,users,uucp,wheel -s /bin/bash dpendolino
+echo "dpendolino ALL=(ALL) ALL" > /mnt/etc/sudoers.d/dpendolino
 
 echo "Enter user password..."
-arch-chroot /mnt passwd pknopf
+arch-chroot /mnt passwd dpendolino
 
 # Patch makepkg to allow running as root.
 arch-chroot /mnt /usr/bin/env bash -c "curl https://gist.githubusercontent.com/pauldotknopf/ff8e986225ab2f264acea1a5bb0c6c5a/raw/66e39c98b1a87cb40abfd489dba53bb5a8625186/makepkg.patch | patch /usr/bin/makepkg"

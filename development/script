@@ -3,14 +3,16 @@ set -e
 
 . ../common
 
-install_aur_package gitflow-avh
-install_aur_package google-chrome
-install_aur_package visual-studio-code-bin
-install_aur_package gpmdp
-
-install_aur_package teamviewer-beta
-systemctl enable teamviewerd
-
-install_aur_package keybase-bin
-
-pacman -S --noconfirm go
+install_packages \
+  google-chrome \
+  google-cloud-sdk \
+  beautysh \
+  atom \
+  autopep8 \
+  zim \
+  vagrant \
+  packer-io \
+  shellcheck \
+  php \
+  composer  \
+  ccache \

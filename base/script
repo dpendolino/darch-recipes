@@ -3,11 +3,17 @@ set -e
 
 . ../common
 
+# Back up pacman.conf first
+cp /etc/pacman.conf /etc/pacman.conf.org
+
+# I compile the AUR images myself, to speed up the build.
+echo -e "[dpendolino]\nServer = https://github.com/dpendolino/binary-repos/releases/download/arch-linux-release/\nSigLevel = Optional TrustAll" >> /etc/pacman.conf
+
 # Initialize the keys
 pacman-key --init
 pacman-key --populate archlinux
 
-# Resyn the database
+# Resync the database
 pacman -Sy --noconfirm
 # Update gpg keys before we install anything else.
 pacman -S --noconfirm archlinux-keyring
@@ -16,25 +22,73 @@ pacman -Syu --noconfirm
 
 # Let's update the mirrors.
 # Note that we append the list, because my experience with the repo square-r00t (in godarch/arch) has been really good.
-install_packages wget sed
+install_packages wget sed aria2
 wget -q -O- https://www.archlinux.org/mirrorlist/\?country\=US\&protocol\=http\&protocol\=https\&ip_version\=4\&use_mirror_status\=on \
   | sed -e "s/#Server/Server/g" \
   >> /etc/pacman.d/mirrorlist
 
+# Use aria2 transfer command to avoid issue with large files and speed up downloads
+sed -i '/#XferCommand = \/usr\/bin\/wget --passive-ftp -c -O %o %u/a XferCommand = echo Downloading %u ... && /usr/bin/aria2c --conf-path=/root/.aria2/pacman-aria2.conf --dir=/ --out %o %u' /etc/pacman.conf
+mkdir /root/.aria2
+cat >> /root/.aria2/pacman-aria2.conf << EndOfMessage
+# error handling
+timeout=60
+connect-timeout=30
+max-tries=5
+retry-wait=10
+max-file-not-found=1
+
+# downloading
+split=3
+max-connection-per-server=16
+min-split-size=1M
+max-concurrent-downloads=16
+file-allocation=none
+remote-time=true
+conditional-get=true
+no-netrc=true
+
+# resuming
+continue=true
+allow-overwrite=true
+always-resume=false
+
+# proxy
+#http-proxy=127.0.0.1:8080
+#https-proxy=127.0.0.1:8080
+#ftp-proxy=127.0.0.1:8080
+
+# console
+quiet=true
+console-log-level=warn
+summary-interval=0
+enable-color=false
+human-readable=false
+#show-console-readout=false
+#truncate-console-readout=false
+
+# logging
+log-level=warn
+log=/var/log/pacman-aria2.log
+EndOfMessage
+
 # Run base install, with dev tools. The "bootstrap" fs doesn't contain everything, just what you need to bootstrap.
 install_packages base base-devel
 
-# makepkg don't allow you to run as root, because it could damage your system.
+# makepkg won't allow you to run as root, because it could damage your system.
 # This is correct, but we don't modify existing systems, we build new ones.
 # The root stuff is more of a hindrance than a benefit when using darch.
 install_packages patch
 curl https://gist.githubusercontent.com/pauldotknopf/ff8e986225ab2f264acea1a5bb0c6c5a/raw/66e39c98b1a87cb40abfd489dba53bb5a8625186/makepkg.patch | patch /usr/bin/makepkg
 
-# Now that we can run makepkg with root, let's our aur helper
+# Edit makepkg.conf
+sed -i "s/#MAKEFLAGS=\"-j2\"/MAKEFLAGS=\"-j$(nproc)\"/"  /etc/makepkg.conf
+
+# Now that we can run makepkg with root, let's install our aur helper
 install_aur_helper
 
 # Install Darch
-install_aur_package darch
+install_aur_packages darch
 # We don't need grub as a bootloader, but we use
 # their helper scripts in Darch to generate menu entries.
 install_packages grub
