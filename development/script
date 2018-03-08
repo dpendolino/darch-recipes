@@ -3,6 +3,8 @@ set -e
 
 . ../common
 
+install_aur_packages keybase-bin
+
 install_packages \
   google-chrome \
   google-cloud-sdk \
