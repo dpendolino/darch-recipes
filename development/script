@@ -6,15 +6,17 @@ set -e
 install_aur_packages keybase-bin
 
 install_packages \
-  google-chrome \
-  google-cloud-sdk \
-  beautysh \
   atom \
   autopep8 \
-  zim \
-  vagrant \
-  packer-io \
-  shellcheck \
-  php \
-  composer  \
+  beautysh \
   ccache \
+  composer  \
+  gitflow-avh \
+  gitflow-bashcompletion-avh \
+  google-chrome \
+  google-cloud-sdk \
+  packer-io \
+  php \
+  shellcheck \
+  vagrant \
+  zim \
