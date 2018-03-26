@@ -10,7 +10,8 @@ install_packages \
   autopep8 \
   beautysh \
   ccache \
-  composer  \
+  composer \
+  docker \
   gitflow-avh \
   gitflow-bashcompletion-avh \
   google-chrome \
