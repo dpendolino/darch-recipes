@@ -53,6 +53,7 @@ install_packages \
   lightdm-gtk-greeter \
   lxterminal \
   python-dbus \
+  steam \
   thunar \
   xterm \
   zenity \
