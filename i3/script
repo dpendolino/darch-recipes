@@ -3,6 +3,13 @@ set -e
 
 . ../common
 
+# Enable multilib repo for steam
+echo >> /etc/pacman.conf
+echo '[multilib]' >> /etc/pacman.conf
+echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf
+
+pacman -Syy
+
 # Enable audio
 install_packages pulseaudio
 install_packages pulseaudio-ctl
